@@ -1,49 +1,26 @@
 #include <stdio.h>
-
-// Define the student_info structure
-struct student_info {
-    int roll_no;
-    char name[50];
-    float CGPA;
-    // Assuming you have another structure named 'dob' for age
-    // struct dob age;
-};
-
-// Function to display student information (call-by-value)
-void displayByValue(struct student_info student) {
-    printf("Roll No: %d\n", student.roll_no);
-    printf("Name: %s\n", student.name);
-    printf("CGPA: %.2f\n", student.CGPA);
-    // Print age if 'dob' structure is defined
-    // printf("Age: %d/%d/%d\n", student.age.day, student.age.month, student.age.year);
-}
-
-// Function to modify student information (call-by-address)
-void modifyByAddress(struct student_info *student) {
-    // Modify some values (for demonstration)
-    student->roll_no = 101;
-    strcpy(student->name, "John Doe");
-    student->CGPA = 3.75;
-    // Modify age if 'dob' structure is defined
-    // student->age.day = 15;
-    // student->age.month = 5;
-    // student->age.year = 2000;
-}
+#include <stdlib.h>
 
 int main() {
-    // Create a student_info structure
-    struct student_info student1 = {123, "Alice", 3.85};
+    int the_int = 0x12345678; // Example input (you can change this)
 
-    // Display initial values
-    printf("Initial Student Information:\n");
-    displayByValue(student1);
+    // Extract individual bytes
+    int a = (the_int >> 24) & 0xff;
+    int b = (the_int >> 16) & 0xff;
+    int c = (the_int >> 8) & 0xff;
+    int d = the_int & 0xff;
 
-    // Modify values using call-by-address
-    modifyByAddress(&student1);
+    // Store in character variables
+    char char_a = (char)a;
+    char char_b = (char)b;
+    char char_c = (char)c;
+    char char_d = (char)d;
 
-    // Display modified values
-    printf("\nModified Student Information:\n");
-    displayByValue(student1);
+    // Print the content
+    printf("Byte a: %c\n", char_a);
+    printf("Byte b: %c\n", char_b);
+    printf("Byte c: %c\n", char_c);
+    printf("Byte d: %c\n", char_d);
 
     return 0;
 }
